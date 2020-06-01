@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
-import { googleMapsKey } from '../configs/config';
+import { googleMapsKey } from '../config';
 import Body from '../map/body';
 // import * as scripts from './scripts';
 
