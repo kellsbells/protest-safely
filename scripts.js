@@ -47,63 +47,61 @@ function hideGeolocateButton() {
 }
 
 function renderMarkers () {
-    console.log('inrenderMarkers');
-    
     return firebase.database().ref('/events/').once('value').then(function (data) {
+        if(data.val()){
+            let events = Object.values(data.val());
+            console.log('last event: ', events[events.length - 1]);
 
-        let events = Object.values(data.val());
-        console.log('last event: ', events[events.length-1]);
-
-        var icons = {
-            protest: {
-                peaceful: './images/protest-peaceful-icon.png',
-                intensifying: './images/protest-intensifying-icon.png',
-                dangerous: './images/protest-dangerous-icon.png'
-            },
-            police: {
-                peaceful: './images/police-peaceful-icon.png',
-                intensifying: './images/police-intensifying-icon.png',
-                dangerous: './images/police-dangerous-icon.png'
-            },
-            aid: {
-                icon: './images/aid-icon.png'
-            }
-        };
-
-
-        for (let i = 0; i < events.length; i++) {
-            let event = events[i];
-            let iconPath;
-
-            switch (events[i].type) {
-                case 'protest':
-                    const demoLevel = events[i].formValues.demolevel
-                    iconPath = icons[events[i].type][demoLevel];
-                    break;
-                case 'police':
-                    const policeLevel = events[i].formValues.policelevel
-                    iconPath = icons[events[i].type][policeLevel];
-                    break;
-                case 'aid':
-                    iconPath = icons.aid.icon;
-            }
-
-            var image = {
-                url: iconPath,
-                size: new google.maps.Size(30, 30),
-                // The origin for this image is (0, 0).
-                origin: new google.maps.Point(0, 0),
-                // The anchor for this image is the base of the flagpole at (0, 32).
-                anchor: new google.maps.Point(0, 30)
+            var icons = {
+                protest: {
+                    cooperative: './images/protest-cooperative-icon.png',
+                    intensifying: './images/protest-intensifying-icon.png',
+                    dangerous: './images/protest-dangerous-icon.png'
+                },
+                police: {
+                    cooperative: './images/police-cooperative-icon.png',
+                    intensifying: './images/police-intensifying-icon.png',
+                    dangerous: './images/police-dangerous-icon.png'
+                },
+                aid: {
+                    icon: './images/aid-icon.png'
+                }
             };
-                    
-            var marker = new google.maps.Marker({
-                position: { lat: event.lat, lng: event.long },
-                map: theMap,
-                icon: image,
-                zIndex: 2,
-            });
-        }
+
+            for (let i = 0; i < events.length; i++) {
+                let event = events[i];
+                let iconPath;
+
+                switch (events[i].type) {
+                    case 'protest':
+                        const demoLevel = events[i].formValues.demolevel
+                        iconPath = icons[events[i].type][demoLevel];
+                        break;
+                    case 'police':
+                        const policeLevel = events[i].formValues.policelevel
+                        iconPath = icons[events[i].type][policeLevel];
+                        break;
+                    case 'aid':
+                        iconPath = icons.aid.icon;
+                }
+
+                var image = {
+                    url: iconPath,
+                    size: new google.maps.Size(30, 30),
+                    // The origin for this image is (0, 0).
+                    origin: new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at (0, 32).
+                    anchor: new google.maps.Point(0, 30)
+                };
+
+                var marker = new google.maps.Marker({
+                    position: { lat: event.lat, lng: event.long },
+                    map: theMap,
+                    icon: image,
+                    zIndex: 2,
+                });
+            }
+        }   
     });
 }
 
@@ -117,8 +115,8 @@ function closeModal(){
     addInitial.classList.add('hide');
     addProtestForm.classList.remove('show');
     addProtestForm.classList.add('hide');
-    addPoliceForm.classList.remove('show');
-    addPoliceForm.classList.add('hide');
+    // addPoliceForm.classList.remove('show');
+    // addPoliceForm.classList.add('hide');
     addAidForm.classList.remove('show');
     addAidForm.classList.add('hide');
 }
@@ -257,7 +255,7 @@ function initApp () {
 
         addButton.addEventListener('click', openAddForm);
         addProtest.addEventListener('click', openAddProtest);
-        addPolice.addEventListener('click', openAddPolice);
+        // addPolice.addEventListener('click', openAddPolice);
         addAid.addEventListener('click', openAddAid);
     }
 }

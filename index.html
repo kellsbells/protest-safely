@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <title>Complex Marker Icons</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="https://kit.fontawesome.com/31052e2e18.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -32,7 +31,7 @@
                         <p>Add a protest at your current location</p>
                     </div>
                 </div>
-                <div id="add-police" class="add-item">
+                <!-- <div id="add-police" class="add-item">
                     <div class="add-icon">
                         <img src="./images/police.png" alt="Police Icon">
                     </div>
@@ -40,7 +39,7 @@
                         <h3>Police</h3>
                         <p>Add police at your current location</p>
                     </div>
-                </div>
+                </div> -->
                 <div id="add-aid" class="add-item">
                     <div class="add-icon">
                         <img src="./images/aid.png" alt="Aid Icon">
@@ -54,8 +53,8 @@
             <div class="add-protest-form hide form">
                 <p>Current Level of Protest Activity</p>
                 <form onsubmit="submitProtestEvent(event);">
-                    <input type="radio" id="peaceful" name="demolevel" value="peaceful">
-                    <label for="peaceful">Peaceful</label><br>
+                    <input type="radio" id="cooperative" name="demolevel" value="cooperative">
+                    <label for="cooperative">Cooperative</label><br>
                     <input type="radio" id="intensifying" name="demolevel" value="intensifying">
                     <label for="intensifying">Intensifying</label><br>
                     <input type="radio" id="dangerous" name="demolevel" value="dangerous">
@@ -63,18 +62,18 @@
                     <button type="submit">Submit</button>
                 </form>
             </div>
-            <div class="add-police-form hide form">
+            <!-- <div class="add-police-form hide form">
                 <p>Current Level of Police Activity</p>
                 <form onsubmit="submitPoliceEvent(event);">
-                    <input type="radio" id="peaceful" name="policelevel" value="peaceful">
-                    <label for="peaceful">Peaceful</label><br>
+                    <input type="radio" id="cooperative" name="policelevel" value="cooperative">
+                    <label for="cooperative">Cooperative</label><br>
                     <input type="radio" id="intensifying" name="policelevel" value="intensifying">
                     <label for="intensifying">Intensifying</label><br>
                     <input type="radio" id="dangerous" name="policelevel" value="dangerous">
                     <label for="dangerous">Dangerous</label>
                     <button type="submit">Submit</button>
                 </form>
-            </div>
+            </div> -->
             <div id="aid-form" class="add-aid-form hide form">
                 <p>Available at this aid station</p>
                 <form onsubmit="submitAidEvent(event);">
@@ -89,22 +88,29 @@
             </div>
         </div>
     </div>
-
-
+    
+    
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
 
     <script>
-        import {
-            firebaseConfig,
-            googleMapsKey
-        } from "./config.js";
+        var firebaseConfig = {
+            apiKey: "AIzaSyCCnRrTQ-bLG1LhxW4jo_cUqnxSYcjAndY",
+            authDomain: "wake-53603.firebaseapp.com",
+            databaseURL: "https://wake-53603.firebaseio.com",
+            projectId: "wake-53603",
+            storageBucket: "wake-53603.appspot.com",
+            messagingSenderId: "128995230530",
+            appId: "1:128995230530:web:cd21cfb2513fcc1d48bedb",
+            measurementId: "G-PTYHHSD6X6"
+        };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         var database = firebase.database();
+
     </script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=" + googleMapsKey + "&callback=initApp"></script>
-    <script async type="text/javascript" src="./scripts.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqyVHho9Hy-kk-l50KjOdHN70BQpPOBT0&callback=initApp"></script>
+    <script async defer type="text/javascript" src="./scripts.js"></script>
 </body>
 
 </html>
